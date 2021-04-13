@@ -168,12 +168,9 @@ rhos = [-temp*4, -temp*3, -temp*2, -temp*1, 0, temp*1, temp*2, temp*3, temp*4]
 phis = [-math.pi/4]
 A4 = calculate_matrix(a=5.5, N=11, rhos=rhos, phis=phis)
 
-rhos = [5, 4, 3, 2, -2, -3, -4, -5]
-phis = [math.pi/2]
-A5 = calculate_matrix(a=5.5, N=11, rhos=rhos, phis=phis)
+A = np.concatenate((A1, A2, A3, A4))
 
-A = np.concatenate((A1, A2, A3, A4, A5))
-
+# remove exess points
 for ray in A:
     for i in range(44):
         ray[i] = 0
@@ -185,13 +182,13 @@ b1 = [12, 9, 6, 3, 6, 12, 6, 3, 12, 6, 12]
 b2 = [32, 26, 29]
 b3 = [8.5, 12.7, 4.2, 8.5, 12.7, 8.5, 12.7, 12.7, 12.7]
 b4 = [8.5, 12.7, 8.5, 8.5, 12.7, 8.5, 8.5, 8.5, 12.7]
-b5 = [0, 0, 0, 0, 0, 0, 0, 0]
 
-b = np.concatenate((b1, b2, b3, b4, b5))
+b = np.concatenate((b1, b2, b3, b4))
 
+# find best x
 x = np.dot(np.linalg.inv(np.dot(A.T, A) +
                          np.identity(121)*0.01), np.dot(A.T, b))
-#res = lsq_linear(A, b, lsmr_tol='auto', verbose=1)
+
 plt.matshow(np.reshape(x, (11, 11)), vmin=2, vmax=5, cmap='hot')
 plt.title("Louis seje plot")
 plt.show()
