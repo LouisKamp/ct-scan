@@ -1,5 +1,3 @@
-from scipy.optimize import lsq_linear
-from numpy.linalg import inv
 import matplotlib.pyplot as plt
 import numpy as np
 import math
@@ -190,5 +188,5 @@ x = np.dot(np.linalg.inv(np.dot(A.T, A) +
                          np.identity(121)*0.01), np.dot(A.T, b))
 
 plt.matshow(np.reshape(x, (11, 11)), vmin=2, vmax=5, cmap='hot')
-plt.title("Louis seje plot")
+plt.title("DTU")
 plt.show()
